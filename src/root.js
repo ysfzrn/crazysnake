@@ -22,6 +22,22 @@ export default class App {
           }
         });
         return;
+      case "gameScreen":
+        Navigation.startSingleScreenApp({
+          screen: {
+            screen: "crazySnake.GameScreen",
+            title: "GameScreen"
+          }
+        });
+        return;
+      case "gameOverScreen":
+        Navigation.startSingleScreenApp({
+          screen: {
+            screen: "crazySnake.GameOverScreen",
+            title: "GameOver Screen"
+          }
+        });
+        return;  
     }
   }
 }

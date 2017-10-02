@@ -5,15 +5,12 @@ import SharedStyle from "../utils/sharedStyle";
 
 // create a component
 class Segment extends Component {
-  
- 
-
   render() {
     const customStyle = {
       left: this.props.x,
       top: this.props.y
     };
-    return <View style={[styles.container, customStyle]}/>;
+    return <View style={[styles.container, customStyle]} />;
   }
 }
 
