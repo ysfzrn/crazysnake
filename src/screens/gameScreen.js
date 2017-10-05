@@ -21,7 +21,7 @@ class GameScreen extends Component {
 
   componentDidMount() {
     const { gameStore } = this.props;
-    gameStore.handleMoveSnake();
+   // gameStore.handleMoveSnake();
   }
 
   leftButtonPress=()=>{
@@ -40,7 +40,7 @@ class GameScreen extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content"/>
-        <ScoreBoardContainer score={gameStore.score} highScore={gameStore.highScore} />
+        
         <Board>
          {snake.map((segment, i) => {
             return <Segment key={segment.id} id={segment.id} x={segment.x} y={segment.y} />;

@@ -15,7 +15,7 @@ class Home extends Component {
 
   componentDidMount() {
     const { gameStore } = this.props;
-    gameStore.getHighScore();
+    //gameStore.getHighScore();
   }
 
   handlePlay=()=>{
