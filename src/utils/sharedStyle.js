@@ -5,23 +5,33 @@ const { width, height } = Dimensions.get("window");
 function definiteWidth(width){
     const reminder = width % 10;
     if( reminder !== 0 ){
-        return width - 5;
+        return width - reminder;
     }else{
         return width;
+    }
+}
+
+function definiteHeight(height){
+    console.log('yusuf', height)
+    const reminder = height % 10;
+    if( reminder !== 0 ){
+        return height - reminder - 130;
+    }else{
+        return height;
     }
 }
 
 const SharedStyle ={
   color:{
       primary:'#122210',
-      primaryBlack:'#223D1D',
+      primaryBlack:'black',
       secondary:'#F9FF1C',
       snake:'#4CAF50',
       scoreColor: 'yellow',
       buttonBackground: '#000000'
   },
   board:{
-      height: Platform.OS === 'ios' ? 500 : 400,
+      height: definiteHeight(height),
       width: definiteWidth(width),
   },
   segment:{

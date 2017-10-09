@@ -28,6 +28,9 @@ class GameOverScreen extends Component {
        <GameOverText />
        <ScoreText label="Score" score={gameStore.score} style={{justifyContent:'center', paddingTop:20}} />
        </View>
+       <View style={{flex:5, marginTop:30,}}>
+         <Button text="RESTART" onPress={ this.restartClick } />
+        </View>
        <BoardContainer> 
         <Board>
           <Food x={gameStore.food.x} y={gameStore.food.y} />
@@ -43,9 +46,6 @@ class GameOverScreen extends Component {
           })}
         </Board>
         </BoardContainer>
-        <View style={{flex:5}} >
-         <Button text="RESTART" onPress={ this.restartClick } />
-        </View>
       </View>
     );
   }

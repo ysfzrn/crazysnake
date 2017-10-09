@@ -9,8 +9,10 @@ class DirectionButton extends Component {
     const { icon } = this.props;
     
     return (
-      <TouchableWithoutFeedback {...this.props}>
-        <Image source={ icon } style={[styles.container]}/>
+      <TouchableWithoutFeedback {...this.props} style={[styles.container]}>
+        <View style={{flex:1}} >
+         <Image source={ icon } style={[styles.image]} resizeMode="contain" />
+        </View>
       </TouchableWithoutFeedback>
     );
   }
@@ -19,8 +21,13 @@ class DirectionButton extends Component {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    width: 80,
-    height: 80,
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  image:{
+    width:SharedStyle.board.width / 2,
+    height:80
   },
   text: {
     fontSize: 20,

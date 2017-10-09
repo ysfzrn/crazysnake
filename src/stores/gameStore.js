@@ -93,7 +93,7 @@ class GameStore {
           }
           cancelAnimationFrame(this.handleMoveSnake);
           NavigationStore.handleChangeRoute('gameOverScreen');
-          clearTimeout(globalID);
+          this.handleClearTimeout();
           return;
       }
     }
@@ -102,6 +102,13 @@ class GameStore {
         requestAnimationFrame(this.handleMoveSnake);
       }, 1000 / this.intervalRate);
   }
+
+  @action("leftButton Pressed")
+  handleClearTimeout() {
+    clearTimeout(globalID);
+  }
+
+
 
   @action("leftButton Pressed")
   handleLeftButton() {
@@ -168,7 +175,7 @@ class GameStore {
         y: this.snake[this.snake.length - 1].y
       });
       if( this.score % 3 === 0 ){
-       this.intervalRate = this.intervalRate + 5;
+       this.intervalRate = this.intervalRate + 3;
       }
        
       this.handleMakeFood();
@@ -189,19 +196,18 @@ class GameStore {
   @action("restart handler")
   handleRestart(){
     NavigationStore.handleChangeRoute('gameScreen');
-    this.intervalRate = 5;
+    this.intervalRate = 25;
     this.currentDirection = "right";
     this.lastSegment = 10;
     this.gameover = false;
     this.rightButtonText = "up";
     this.leftButtonText = "down";
     this.score = 0;
-    this.highScore = 0;
     this.food = { x: 50, y: 50 };
     this.snake = [
-      { id: 6, x: 20, y: 0 },
-      { id: 7, x: 10, y: 0 },
-      { id: 8, x: 0, y: 0 }
+      { id: 1, x: 20, y: 0 },
+      { id: 2, x: 10, y: 0 },
+      { id: 3, x: 0, y: 0 }
     ];
   }
 

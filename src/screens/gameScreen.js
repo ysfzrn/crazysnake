@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Dimensions, StatusBar, Image, Platform } from "react-native";
+import { View, Text, StyleSheet, Dimensions, StatusBar, Image, Platform, LayoutAnimation } from "react-native";
 import { inject, observer } from "mobx-react/native";
 import { DirectionButton,  Segment, ScoreText, Food} from "../components";
 import SharedStyle from "../utils/sharedStyle";
@@ -11,6 +11,7 @@ const leftButton = require('../assets/leftButton.png');
 const upButton = require('../assets/upButton.png');
 const downButton = require('../assets/downButton.png');
 
+var UIManager = require('UIManager');
 // create a component
 @inject("nav", "gameStore")
 @observer
@@ -21,7 +22,15 @@ class GameScreen extends Component {
 
   componentDidMount() {
     const { gameStore } = this.props;
-   // gameStore.handleMoveSnake();
+    UIManager.setLayoutAnimationEnabledExperimental && 
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+    gameStore.handleMoveSnake();
+    gameStore.getHighScore();
+  }
+
+  componentWillUnmount() {
+    const { gameStore } = this.props;
+    gameStore.handleClearTimeout();
   }
 
   leftButtonPress=()=>{
@@ -40,7 +49,7 @@ class GameScreen extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content"/>
-        
+        <ScoreBoardContainer  score={gameStore.score} highScore={ gameStore.highScore } />
         <Board>
          {snake.map((segment, i) => {
             return <Segment key={segment.id} id={segment.id} x={segment.x} y={segment.y} />;
@@ -49,6 +58,7 @@ class GameScreen extends Component {
         </Board>    
         <ButtonContainer>
           <DirectionButton icon={gameStore.leftButtonText === 'down' ? downButton : leftButton } onPressIn={ this.leftButtonPress } />
+          <Line/>
           <DirectionButton icon={gameStore.rightButtonText === 'up' ? upButton : rightButton } onPressIn={ this.rightButtonPress} />
         </ButtonContainer>
       </View>
@@ -81,13 +91,19 @@ const ScoreBoardContainer = props => {
   )
 }
 
+const Line = props => {
+  return(
+    <View style={styles.line} />
+  )
+}
+
 
 // define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: SharedStyle.color.primaryBlack,
+    backgroundColor: "black",
     ...Platform.select({
       ios:{
         paddingTop: 20
@@ -113,11 +129,19 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width,
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around"
+    justifyContent: "center",
   },
+  line:{
+    position:'absolute',
+    left: width / 2,
+    flex:1,
+    width:1,
+    height:60,
+    borderWidth:1,
+    borderColor: '#FFFFFF'
+  }
 });
 
 //make this component available to the app
