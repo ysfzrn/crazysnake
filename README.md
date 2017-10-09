@@ -1,5 +1,8 @@
 # Crazy Snake - React Native Example Project
 
+
+[View on App Store](https://itunes.apple.com/us/app/hungry-crazy-snake/id1292429610?ls=1&mt=8)
+
 Dependencies
 ----------------
 - mobx
