@@ -9,6 +9,8 @@ Dependencies
 - mobx-react
 - react-native-navigation
 
-<img src="images/cs1.png"  width="25%"/>
-<img src="images/cs2.png"  width="25%"/>
-<img src="images/cs3.png"  width="25%"/>
+<div style="display:flex; item-direction:row; justify-content:space-around; height:530px" >
+<img src="images/cs1.png"  width="30%"/>
+<img src="images/cs2.png"  width="30%"/>
+<img src="images/cs3.png"  width="30%"/>
+</div>
